@@ -1,25 +1,16 @@
 import data from "@/data.json";
 import Image from "next/image";
+import { MinusIcon, PlusIcon, ReplyIcon } from "./components/Icons";
 export default function Home() {
   return (
     <div className="flex flex-col gap-4 py-16 relative">
       {data.comments.map((comment) => (
         <div key={comment.id} className="max-w-2xl mx-auto ">
           <div className="px-4 flex gap-x-4 bg-white p-4 rounded-xl">
-            <div className="flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2">
-              <Image
-                src="/icon-plus.svg"
-                alt="amyrobson"
-                width={40}
-                height={40}
-              />
+            <div className="flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2 select-none">
+              <PlusIcon className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]" />
               <p>{comment.score}</p>
-              <Image
-                src="/icon-minus.svg"
-                alt="amyrobson"
-                width={40}
-                height={40}
-              />
+              <MinusIcon className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]" />
             </div>
             <div className="flex flex-col gap-y-4">
               <div className="flex justify-between items-center">
@@ -33,13 +24,8 @@ export default function Home() {
                   <p className="font-bold">{comment.user.username}</p>
                   <p className="text-[#828FA3]">{comment.createdAt}</p>
                 </div>
-                <div className="flex items-center gap-2 text-[#5357B6] font-bold">
-                  <Image
-                    src="/icon-reply.svg"
-                    alt="amyrobson"
-                    width={15}
-                    height={15}
-                  />
+                <div className="flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none">
+                  <ReplyIcon className="hover:cursor-pointer" />
                   <span>Reply</span>
                 </div>
               </div>
@@ -53,20 +39,10 @@ export default function Home() {
                   key={reply.id}
                   className="px-4 flex gap-x-4 bg-white p-4 max-w-xl mx-auto rounded-xl"
                 >
-                  <div className="flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2">
-                    <Image
-                      src="/icon-plus.svg"
-                      alt="amyrobson"
-                      width={40}
-                      height={40}
-                    />
-                    <p>{reply.score}</p>
-                    <Image
-                      src="/icon-minus.svg"
-                      alt="amyrobson"
-                      width={40}
-                      height={40}
-                    />
+                  <div className="flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2 select-none">
+                    <PlusIcon className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]" />
+                    <p>{comment.score}</p>
+                    <MinusIcon className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]" />
                   </div>
                   <div className="flex flex-col gap-y-4">
                     <div className="flex justify-between items-center">
@@ -80,13 +56,8 @@ export default function Home() {
                         <p className="font-bold">{reply.user.username}</p>
                         <p className="text-[#828FA3]">{reply.createdAt}</p>
                       </div>
-                      <div className="flex items-center gap-2 text-[#5357B6] font-bold">
-                        <Image
-                          src="/icon-reply.svg"
-                          alt="amyrobson"
-                          width={15}
-                          height={15}
-                        />
+                      <div className="flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none">
+                        <ReplyIcon className="hover:cursor-pointer" />
                         <span>Reply</span>
                       </div>
                     </div>
