@@ -21,8 +21,6 @@ export default async function handler(
             id: true,
             email: true,
             username: true,
-            name: true,
-            role: true,
             image: true,
           },
         });

@@ -2,6 +2,9 @@ import { User as UserDb } from "../generated/prisma/client";
 import NextAuth, { DefaultSession, DefaultJWT } from "next-auth";
 
 declare module "next-auth" {
+  interface User extends DefaultUser {
+
+  } as UserDb
   interface Session extends DefaultSession {
     user: UserDb;
   }

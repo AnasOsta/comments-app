@@ -1,8 +1,8 @@
 import { db } from "@/app/lib/db";
-import { User } from "@/lib/types";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { hash } from "bcrypt";
 import * as z from "zod";
+import { User } from "@/app/generated/prisma";
 
 type ResponseData = {
   message: string;
@@ -56,7 +56,6 @@ export default async function handler(
 
         const newUser = await db.user.create({
           data: {
-            role: "user",
             email,
             username,
             password: hashedPassword,
@@ -64,10 +63,7 @@ export default async function handler(
         });
 
         res.status(200).json({
-          user: {
-            email: newUser.email || "",
-            username: newUser.username || "",
-          },
+          user: newUser,
           message: "User Created successfully",
         });
       } catch (e) {
