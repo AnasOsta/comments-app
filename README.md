@@ -38,10 +38,6 @@ Users should be able to:
 - Upvote and downvote comments
 - Register and log in using a secure authentication system
 
-### Screenshot
-
-![Screenshot](./screenshot.jpg)
-
 ### Links
 
 - 🔗 **Live Site**: [comments-app-eight-omega.vercel.app](https://comments-app-eight-omega.vercel.app/)
