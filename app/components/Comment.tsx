@@ -76,7 +76,7 @@ export default function Comment({
       <div
         className={`px-4 flex gap-x-4 bg-white p-4 rounded-xl w-full ${className}`}
       >
-        <div className=" flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2 select-none">
+        <div className="max-sm:hidden flex flex-col items-center gap-y-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit rounded-lg p-2 select-none">
           <PlusIcon
             onClick={() => handleComment("like")}
             className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]"
@@ -89,11 +89,16 @@ export default function Comment({
         </div>
         <div className="flex flex-col gap-y-4 w-full">
           <div className="flex justify-between items-center ">
-            <div className="flex gap-x-4">
+            <div className="flex gap-4 items-center max-sm:flex-wrap max-sm:gap-2">
               <p className="font-bold text-white p-3 h-fit flex items-center justify-center bg-[#5357B6] rounded-full">
                 {comment.user?.username?.slice(0, 2).toUpperCase()}
               </p>
               <p className="font-bold uppercase">{comment.user.username}</p>
+              {comment.user.username === currentUser?.username && (
+                <p className="bg-[#5357B6] text-white px-2 rounded-sm h-fit">
+                  You
+                </p>
+              )}
               <p className="text-[#828FA3]">
                 {getRelativeTime(new Date(comment.createdAt))}
               </p>
@@ -103,13 +108,13 @@ export default function Comment({
                 onClick={() =>
                   setOpenState((prev) => ({ ...prev, reply: !prev.reply }))
                 }
-                className="flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none"
+                className="max-sm:hidden flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none"
               >
                 <ReplyIcon className="hover:cursor-pointer" />
                 <span>Reply</span>
               </div>
             ) : (
-              <div className="flex gap-4">
+              <div className="max-sm:hidden flex gap-4">
                 <Modal
                   header="Delete comment"
                   body={
@@ -175,6 +180,71 @@ export default function Comment({
               </SubmitButton>
             </>
           )}
+          <div className="flex justify-between items-center">
+            <div className="sm:hidden flex items-center gap-x-4 bg-[#F5F7FA] text-[#5357B6] font-bold h-fit w-fit rounded-lg p-2 select-none">
+              <PlusIcon
+                onClick={() => handleComment("like")}
+                className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]"
+              />
+              <p>{comment.likes}</p>
+              <MinusIcon
+                onClick={() => handleComment("dislike")}
+                className="hover:cursor-pointer text-[#5357B6]/50 hover:text-[#5357B6]"
+              />
+            </div>
+            {comment.user.username !== currentUser?.username ? (
+              <div
+                onClick={() =>
+                  setOpenState((prev) => ({ ...prev, reply: !prev.reply }))
+                }
+                className="sm:hidden flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none"
+              >
+                <ReplyIcon className="hover:cursor-pointer" />
+                <span>Reply</span>
+              </div>
+            ) : (
+              <div className="sm:hidden flex gap-4">
+                <Modal
+                  header="Delete comment"
+                  body={
+                    <p className="text-[#828FA3] ">
+                      Are you sure you want to delete this comment? This will
+                      remove the comment and cant be undone.
+                    </p>
+                  }
+                  footer={(closeModal) => (
+                    <div className="flex gap-4">
+                      <button
+                        onClick={closeModal}
+                        className="uppercase text-sm text-white px-4 py-3 rounded-lg cursor-pointer bg-gray-500 hover:bg-gray-600 active:opacity-90 select-none w-full"
+                      >
+                        no, cancel
+                      </button>
+
+                      <DeleteButton
+                        loading={loadingState.delete}
+                        handleComment={handleComment}
+                      />
+                    </div>
+                  )}
+                >
+                  <div className="flex items-center gap-2 text-red-500 font-bold cursor-pointer hover:text-red-300 select-none">
+                    <DeleteIcon className="hover:cursor-pointer" />
+                    <span>Delete</span>
+                  </div>
+                </Modal>
+                <div
+                  onClick={() =>
+                    setOpenState((prev) => ({ ...prev, edit: !prev.edit }))
+                  }
+                  className="flex items-center gap-2 text-[#5357B6] font-bold cursor-pointer hover:text-[#5357B6]/50 select-none"
+                >
+                  <EditIcon className="hover:cursor-pointer" />
+                  <span>Edit</span>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       {openState.reply && (

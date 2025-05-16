@@ -10,7 +10,7 @@ export default function Navbar() {
     <div className="w-full bg-white h-16 shadow px-4">
       <div className="max-w-5xl mx-auto h-full flex items-center justify-between">
         <div className="cursor-pointer" onClick={() => router.push("/")}>
-          <h1 className="text-2xl font-bold">
+          <h1 className="text-lg sm:text-2xl font-bold">
             Comments<span className="text-[#5357B6]">Site</span>
           </h1>
         </div>
@@ -18,12 +18,12 @@ export default function Navbar() {
           <div className="font-semibold text-sm flex gap-x-2 items-center">
             <button
               onClick={() => signOut()}
-              className="text-white px-4 py-2 rounded-lg cursor-pointer bg-red-600 hover:bg-red-700 active:opacity-90 select-none"
+              className="text-white px-2 py-1 sm:px-4 sm:py-2 rounded-lg cursor-pointer bg-red-600 hover:bg-red-700 active:opacity-90 select-none"
             >
               Logout
             </button>
             |
-            <p className="text-xl font-bold capitalize">
+            <p className="sm:text-xl font-bold capitalize">
               {data.user?.username}
             </p>
           </div>

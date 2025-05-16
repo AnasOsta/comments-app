@@ -33,7 +33,7 @@ export default function Home() {
   }
 
   return (
-    <div className="flex flex-col gap-4 pt-16 pb-44 relative">
+    <div className="flex flex-col gap-4 pt-16 pb-60 sm:pb-44 relative max-sm:px-4">
       {data.map((comment) => (
         <div key={comment.id} className="">
           <Comment
@@ -58,20 +58,39 @@ export default function Home() {
         </div>
       ))}
       {session?.user && (
-        <div className="fixed bottom-0 right-0 left-0 bg-white rounded-lg flex gap-x-4 p-4 max-w-2xl mx-auto">
-          <p className="font-bold text-white p-3 h-fit flex items-center justify-center bg-[#5357B6] rounded-full">
-            {session?.user?.username?.slice(0, 2).toUpperCase()}
-          </p>
-          <textarea
-            value={comment}
-            onChange={(e) => setComment(e.target.value)}
-            placeholder="Add a comment..."
-            className="w-full h-32 border border-gray-300 rounded-lg p-4 focus:border-[#5357B6] focus:outline-none resize-none"
-          />
+        <div className="fixed bottom-0 right-0 left-0 bg-white rounded-lg max-w-2xl mx-auto ">
+          <div className="max-sm:hidden flex gap-x-4 p-4">
+            <p className="font-bold text-white p-3 h-fit flex items-center justify-center bg-[#5357B6] rounded-full">
+              {session?.user?.username?.slice(0, 2).toUpperCase()}
+            </p>
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Add a comment..."
+              className="w-full h-32 border border-gray-300 rounded-lg p-4 focus:border-[#5357B6] focus:outline-none resize-none"
+            />
 
-          <SubmitButton onClick={handleComment} loading={loading}>
-            Submit
-          </SubmitButton>
+            <SubmitButton onClick={handleComment} loading={loading}>
+              Submit
+            </SubmitButton>
+          </div>
+          <div className="sm:hidden p-4">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Add a comment..."
+              className="w-full h-32 border border-gray-300 rounded-lg p-4 focus:border-[#5357B6] focus:outline-none resize-none"
+            />
+            <div className="flex justify-between mt-4">
+              <p className="font-bold text-white p-3 h-fit flex items-center justify-center bg-[#5357B6] rounded-full">
+                {session?.user?.username?.slice(0, 2).toUpperCase()}
+              </p>
+
+              <SubmitButton onClick={handleComment} loading={loading}>
+                send
+              </SubmitButton>
+            </div>
+          </div>
         </div>
       )}
     </div>
