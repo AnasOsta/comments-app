@@ -131,27 +131,11 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
-exports.Prisma.AccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  type: 'type',
-  provider: 'provider',
-  providerAccountId: 'providerAccountId',
-  refresh_token: 'refresh_token',
-  access_token: 'access_token',
-  expires_at: 'expires_at',
-  token_type: 'token_type',
-  scope: 'scope',
-  id_token: 'id_token',
-  session_state: 'session_state',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
   content: 'content',
   userId: 'userId',
+  parentUsername: 'parentUsername',
   parentId: 'parentId',
   like: 'like',
   createdAt: 'createdAt',
@@ -185,7 +169,6 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.ModelName = {
   User: 'User',
-  Account: 'Account',
   Comment: 'Comment',
   CommentLike: 'CommentLike'
 };

@@ -27,7 +27,6 @@ export default async function handler(
       try {
         const { email, username, password } = UserSchema.parse(req.body);
 
-        console.log(email, username, password);
         // check if email already exists
         const existingUserByEmail = await db.user.findUnique({
           where: {

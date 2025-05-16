@@ -6,11 +6,10 @@ import React from "react";
 export default function Navbar() {
   const router = useRouter();
   const { data } = useSession();
-  console.log(data);
   return (
     <div className="w-full bg-white h-16 shadow px-4">
       <div className="max-w-5xl mx-auto h-full flex items-center justify-between">
-        <div>
+        <div className="cursor-pointer" onClick={() => router.push("/")}>
           <h1 className="text-2xl font-bold">
             Comments<span className="text-[#5357B6]">Site</span>
           </h1>
@@ -24,7 +23,9 @@ export default function Navbar() {
               Logout
             </button>
             |
-            <p className="text-xl font-bold capitalize">{data.user.username}</p>
+            <p className="text-xl font-bold capitalize">
+              {data.user?.username}
+            </p>
           </div>
         ) : (
           <div className="font-semibold text-sm flex gap-x-2 items-center">

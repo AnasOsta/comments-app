@@ -11,12 +11,12 @@ export type CommentType = {
   content: string;
   createdAt: string;
   parentId: string | null;
+  parentUsername: string | null;
   user: {
     username: string;
   };
-  _count: {
-    likes: number;
-  };
+  likes: number;
+  replies: CommentType[];
 };
 
 export type UserType = {
