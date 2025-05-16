@@ -15,9 +15,12 @@ const geistMono = Geist_Mono({
 
 export async function generateMetadata() {
   return {
-    keywords: "",
-    title: "",
-    description: "",
+    keywords:
+      "comments system, interactive comments, Next.js, Prisma, NextAuth, bcrypt, React, Supabase, full-stack, web development",
+    title:
+      "CommentsSite - Interactive Comments System Built with Next.js and Prisma",
+    description:
+      "CommentsSite is a full-stack interactive comments application featuring user authentication with NextAuth, data management with Prisma and Supabase, and frontend built with Next.js and Tailwind CSS. Learn how to create, reply, and manage comments with secure login and real-time updates.",
     icons: {
       shortcut: "/favicon.png",
     },

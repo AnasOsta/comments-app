@@ -8,7 +8,7 @@ import { SubmitButton } from "./components/SubmitButton";
 export default function Home() {
   const { data: session } = useSession();
   const [comment, setComment] = useState("");
-  const [data, setData] = useState<CommentType[]>([]);
+  const [data, setData] = useState<CommentType[] | null>(null);
   const [loading, setLoading] = useState(false);
 
   async function fetchComments() {
